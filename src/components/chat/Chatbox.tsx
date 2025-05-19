@@ -90,7 +90,6 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
     })
     setNewMessage("")
     const data = await response.json();
-    console.log(data, "/data");
 
     setLoading(false);
     setMessages((prev: any) => [...prev, data])
