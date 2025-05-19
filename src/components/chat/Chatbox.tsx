@@ -60,6 +60,7 @@ interface Props {
 const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
   const [messages, setMessages] = useState(conversation || []);
   const [newMessage, setNewMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -69,6 +70,9 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!newMessage.trim()) return;
+
+    setLoading(true);
+
     const messageObj = {
       "sender": "user",
       "message": newMessage.trim(),
@@ -77,20 +81,20 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
     setMessages((prev: any) => [...prev, messageObj])
 
     // Api call 
-    const response = await fetch(`http://localhost:8888/gemini-chat`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_LIVE_URL}/gemini-chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ message: newMessage })
     })
+    setNewMessage("")
     const data = await response.json();
     console.log(data, "/data");
 
+    setLoading(false);
     setMessages((prev: any) => [...prev, data])
-
     // Clear Message Input 
-    setNewMessage("")
   }
 
   useEffect(()=>{ 
@@ -147,7 +151,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
             <div className='relative flex justify-center items-center'>
               <input type="text" name='message' value={newMessage} placeholder="Type a message..."
                 className='flex-1 px-4 py-2 me-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400' onChange={inputHandler} />
-              <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md">Send </button>
+              <button type="submit" disabled={loading} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md">Send </button>
             </div>
           </form>
         </div>
