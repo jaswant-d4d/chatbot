@@ -57,8 +57,8 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
   }, [messages]);
 
   return (
-    <div className="container absolute bottom-20 right-20 transform transition-all duration-500 fade-in-out">
-      <div className='relative max-w-lg rounded-2xl h-[80vh] bg-slate-100 ml-auto transition-opacity duration-300 ease-in-out opacity-100 transform translate-y-0'>
+    <div className="fixed inset-x-4 bottom-4 sm:bottom-8 sm:right-8 sm:inset-x-auto z-50 transition-all duration-500">
+      <div className='relative w-full sm:max-w-lg rounded-2xl h-[80vh] bg-slate-100 mx-auto sm:ml-auto'>
         <div className='flex flex-col h-full'>
           {/* header */}
           <div className='py-4 px-4 sm:px-8 bg-slate-900 text-white rounded-t-2xl flex justify-between items-center'>
@@ -102,16 +102,29 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
           </div>
 
           {/* Footer */}
-          <div className='absolute bottom-4 left-10 right-10'>
+          <div className='px-4 py-3 sm:px-6 absolute bottom-0 left-0 right-0 bg-slate-100 rounded-b-2xl'>
             <form onSubmit={submitHandler}>
-              <div className='relative flex justify-center items-center'>
-                <input type="text" name='message' value={newMessage} placeholder="Type a message..."
-                  className='flex-1 px-4 py-2 me-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400' onChange={inputHandler} />
-                <button type="submit" disabled={loading} className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md ${!loading ? "cursor-pointer" : "cursor-auto"}`}>Send </button>
+              <div className='flex items-center gap-2'>
+                <input
+                  type="text"
+                  name='message'
+                  value={newMessage}
+                  placeholder="Type a message..."
+                  className='flex-1 px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400'
+                  onChange={inputHandler}
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md ${!loading ? "cursor-pointer" : "cursor-auto"}`}
+                >
+                  Send
+                </button>
               </div>
             </form>
           </div>
-        </div></div>
+        </div>
+      </div>
     </div>
   )
 }
