@@ -5,7 +5,7 @@ const conversation = [
     "sender": "bot",
     "message": "Hi there! How can I assist you today?",
     "timestamp": "2025-05-13T10:00:00Z"
-  }
+  },
 ]
 
 interface Props {
@@ -58,8 +58,9 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
 
   return (
     <div className="fixed inset-x-4 bottom-4 sm:bottom-8 sm:right-8 sm:inset-x-auto z-50 transition-all duration-500">
-      <div className='relative w-full sm:max-w-lg rounded-2xl h-[80vh] bg-slate-100 mx-auto sm:ml-auto'>
-        <div className='flex flex-col h-full'>
+      <div className='relative w-full sm:w-md rounded-2xl h-[80vh] bg-slate-100 mx-auto sm:ml-auto'>
+        <div className='flex flex-col h-full w-full'>
+
           {/* header */}
           <div className='py-4 px-4 sm:px-8 bg-slate-900 text-white rounded-t-2xl flex justify-between items-center'>
             <div className='flex justify-between items-center'>
@@ -68,31 +69,32 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
             </div>
             <button type='button' onClick={() => setChatBoxVisible(false)} className='cursor-pointer'>Close</button>
           </div>
+
           {/* Converations */}
-          <div className="py-4 px-4 sm:px-8 space-y-4 h-[64vh] scrollbar-hide overflow-auto overscroll-none">
+          <div className="py-4 px-6 space-y-4 h-[64vh] scrollbar-hide overflow-auto overscroll-none">
             {messages?.length > 0 && messages?.map((msg, index) => (
               <React.Fragment key={index}>
                 {msg?.sender === "bot" ? (
-                  < div className="flex items-start gap-3">
+                  < div className="flex items-start gap-2">
                     <img
                       src="/images/bot.jfif"
                       alt="Bot Avatar"
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                     />
-                    <div className="bg-slate-200 text-gray-800 p-3 rounded-2xl max-w-[80%]">
-                      <p className="mb-1 font-medium">{msg.message}</p>
+                    <div className="bg-slate-200 text-gray-800 p-3 rounded-2xl max-w-[80%] break-words whitespace-pre-wrap text-left w-fit">
+                      <p className=" mb-1 text-sm font-medium">{msg.message}</p>
                     </div>
                   </div >
                 ) : (
                   <div className="flex items-start justify-end gap-3">
 
-                    <div className="bg-blue-100 text-gray-800 p-3 rounded-2xl max-w-[80%] text-right">
-                      <p className="mb-1 font-medium">{msg.message}</p>
+                    <div className="bg-blue-100 text-gray-800 p-3 rounded-2xl max-w-[80%] break-words whitespace-pre-wrap text-left w-fit">
+                      <p className="mb-1 text-sm font-medium">{msg.message}</p>
                     </div>
                     <img
                       src="/images/avatar.jpg"
                       alt="User Avatar"
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                     />
                   </div>
                 )}
@@ -110,13 +112,13 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
                   name='message'
                   value={newMessage}
                   placeholder="Type a message..."
-                  className='flex-1 px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400'
+                  className='flex-1 w-[100px] px-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400'
                   onChange={inputHandler}
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md ${!loading ? "cursor-pointer" : "cursor-auto"}`}
+                  className={` bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md ${!loading ? "cursor-pointer" : "cursor-auto"}`}
                 >
                   Send
                 </button>
