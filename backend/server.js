@@ -1,6 +1,7 @@
 const express = require('express');
-const dotenv = require('dotenv').config();
-const routes = require('./routes')
+
+require('dotenv').config();
+const routes = require('./src/routes')
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8888;
@@ -14,7 +15,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", routes);
+app.use("/api", routes);
 
 app.get("/", (req, res) => {
   res.json({ message: "hello world!" })
