@@ -124,7 +124,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
                     {greeting.options.map(opt => (
                       <button
                         key={opt.value}
-                        onClick={() => handleOptionClick(opt.value, opt.label)}
+                        onClick={() => handleOptionClick(opt.value)}
                         className="bg-white text-sm text-left border border-gray-300 hover:bg-gray-100 px-4 py-2 rounded"
                       >
                         {opt.label}
