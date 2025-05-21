@@ -32,7 +32,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  const apiUrl = import.meta.env.VITE_BACKEND_LOCAL_URL;
+  const apiUrl = import.meta.env.VITE_BACKEND_LIVE_URL;
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
