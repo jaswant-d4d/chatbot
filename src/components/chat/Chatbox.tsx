@@ -43,7 +43,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
     return ["general_website", "design_services", "marketing_growth", "general_questions"].includes(value);
   };
 
-  const handleOptionClick = (value: string, label: string) => {
+  const handleOptionClick = (value: string) => {
     // setMessages((prev: MessageType[]) => [...prev, { sender: "user", message: label }]);
     if (isValidTopic(value)) {
       setSelectedTopic(value);
