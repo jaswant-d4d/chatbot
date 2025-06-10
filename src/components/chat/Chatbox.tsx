@@ -3,6 +3,8 @@ import { knowledgeBase, type QAItem, type TopicKey } from '@/data/chatbot/Knowle
 import { greeting } from '@/data/chatbot/Greeting'
 import { motion } from "framer-motion";
 import Markdown from 'react-markdown'
+import BotImg from "/images/bot.png";
+import UserImg from "/images/avatar.png";
 
 
 interface MessageType {
@@ -104,7 +106,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
           {/* header */}
           <div className='py-4 px-4 sm:px-8 bg-slate-900 text-white rounded-t-2xl flex justify-between items-center'>
             <div className='flex justify-between items-center'>
-              <img src='/images/bot.jfif' alt='Avatar' className='w-10 h-full rounded-full me-2' />
+              <img src={BotImg} alt='Bot Avatar' className='w-10 h-full rounded-full me-2' />
               <p className='text-white text-lg font-semibold '>Chatbot</p>
             </div>
             <button type='button' onClick={() => setChatBoxVisible(false)} className='cursor-pointer'>Close</button>
@@ -171,7 +173,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
                   {msg?.sender === "bot" ? (
                     < div className="flex items-start gap-2">
                       <img
-                        src="/images/bot.jfif"
+                        src={BotImg}
                         alt="Bot Avatar"
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                       />
@@ -188,7 +190,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
                         {/* <p className="mb-1 text-sm font-medium">{msg.message}</p> */}
                       </div>
                       <img
-                        src="/images/avatar.png"
+                        src={UserImg}
                         alt="User Avatar"
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                       />
