@@ -188,7 +188,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
                         {/* <p className="mb-1 text-sm font-medium">{msg.message}</p> */}
                       </div>
                       <img
-                        src="/images/avatar.jpg"
+                        src="/images/avatar.png"
                         alt="User Avatar"
                         className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                       />
