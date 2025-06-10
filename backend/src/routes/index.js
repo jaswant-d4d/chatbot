@@ -8,7 +8,7 @@ router.get('/chatgpt-chat', ChatGPT)
 router.post('/gemini-chat', GeminiChat);
 
 router.get("/test", (req, res) => {
-  res.json({ message: "Server is working fine" })
+  res.json({ message: "Server is working fine!" })
 })
 
 
