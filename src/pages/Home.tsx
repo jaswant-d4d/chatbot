@@ -5,7 +5,6 @@ import ChatIcon from '/images/chat-icon.png'
 const Home = () => {
   const [chatBoxVisible, setChatBoxVisible] = useState(false);
 
-
   return (
     <div>
       {chatBoxVisible ? (
