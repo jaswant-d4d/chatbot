@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", routes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "hello world!" })
+  res.json({ message: "Server working fine!" })
 })
 
 app.listen(port, () => {
