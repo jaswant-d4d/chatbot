@@ -6,10 +6,10 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8888;
 
-const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL } = process.env;
+const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL, WP_FRONTEND_LOCAL_URL } = process.env;
 
 app.use(cors({
-  origin:["http://localhost:5173", FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL] // or your production domain
+  origin: ["http://localhost:5173", WP_FRONTEND_LOCAL_URL, FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL] // or your production domain
 }));
 
 app.use(express.json());

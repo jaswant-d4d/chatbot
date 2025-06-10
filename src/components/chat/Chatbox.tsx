@@ -211,7 +211,7 @@ const Chatbox: React.FC<Props> = ({ setChatBoxVisible }) => {
                 < div className="flex items-center gap-2">
 
                   <img
-                    src="/images/bot.jfif"
+                    src={BotImg}
                     alt="Bot Avatar"
                     className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
                   />
