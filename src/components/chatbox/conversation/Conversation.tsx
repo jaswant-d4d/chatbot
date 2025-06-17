@@ -20,14 +20,15 @@ const Conversation = () => {
 
     return (
         <>
-            <div className="p-4 space-y-4  sm:h-[64vh] scrollbar-hide overflow-auto overscroll-none"  style={{ maxHeight: 'calc(100vh - 130px)' }}>
+        {/* style={{ maxHeight: 'calc(100vh - 130px)' }} sm:h-[64vh] */}
+            <div className="p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none">
                 {page === "home" && (<HomeView />)}
                 {page === "chat" && (<ChatView />)}
                 <div ref={bottomRef} />
             </div>
 
             {page === "home" && (
-                <div className="px-4 py-4 absolute bottom-0 left-0 right-0 border-t border-slate-200 bg-white z-10">
+                <div className="px-4 py-1 absolute bottom-0 left-0 right-0 border-t border-slate-200 bg-white z-10">
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
