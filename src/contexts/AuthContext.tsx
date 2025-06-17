@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<UserType | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const apiBaseUrl = import.meta.env.VITE_BACKEND_LOCAL_URL;
+    const apiBaseUrl = import.meta.env.VITE_BACKEND_LIVE_URL;
 
     useEffect(() => {
         const checkAuth = async () => {

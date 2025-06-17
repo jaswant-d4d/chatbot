@@ -39,7 +39,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
 
     const [messages, setMessages] = useState<MessageType[]>(conversation || []);
 
-    const apiBaseUrl = import.meta.env.VITE_BACKEND_LOCAL_URL;
+    const apiBaseUrl = import.meta.env.VITE_BACKEND_LIVE_URL;
 
     useEffect(() => {
         const getChat = async () => {
