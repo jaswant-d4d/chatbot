@@ -1,14 +1,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 import React, { useState, type FormEvent, type MouseEvent } from "react";
-import sendImg from "/images/right.png";
 import { useChat } from "@/contexts/ChatContext";
-
-
-interface MessageType {
-    sender: string
-    message: string
-    timestamp?: string
-}
 
 const Footer = () => {
 
