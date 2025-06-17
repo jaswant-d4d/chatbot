@@ -7,7 +7,7 @@ const db = require('./src/config/DBConnection');
 
 
 const app = express();
-const port = process.env.PORT || 8888;
+const port = process.env.PORT || 9999;
 
 const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL, WP_FRONTEND_LOCAL_URL } = process.env;
 
