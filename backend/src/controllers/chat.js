@@ -35,8 +35,6 @@ exports.GetGeminiChat = async (req, res) => {
     try {
         const chat = await Chat.find({ user: userId }); // Optional: sorted by latest
 
-        console.log('Fetched chat history:', chat);
-
         res.status(200).json({
             success: true,
             message: 'Chat history fetched successfully.',
