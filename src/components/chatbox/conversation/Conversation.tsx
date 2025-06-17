@@ -65,19 +65,13 @@ const Conversation = () => {
                                 width="24"
                                 height="24"
                                 viewBox="0 0 32 32"
-                                className={`rounded-full p-1 transition
-                                ${page === "chat"
-                                        ? "bg-blue-500 text-white"
-                                        : "text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600"}`}
+                                className={`rounded-full p-1 transition text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600`}
                                 fill="currentColor"
                             >
                                 <path d="M 16 3 C 12.21 3 8.77 4.11 6.22 5.98 C 3.67 7.84 2 10.51 2 13.5 C 2 17.13 4.47 20.2 8 22.05 V 29 L 14.75 23.94 C 15.16 23.97 15.57 24 16 24 C 19.79 24 23.23 22.89 25.78 21.03 C 28.33 19.16 30 16.49 30 13.5 C 30 10.51 28.33 7.84 25.78 5.98 C 23.23 4.11 19.79 3 16 3 Z M 16 5 C 19.39 5 22.45 6.02 24.6 7.59 C 26.76 9.16 28 11.25 28 13.5 C 28 15.75 26.76 17.84 24.6 19.41 C 22.45 20.98 19.39 22 16 22 C 15.51 22 15.02 21.97 14.52 21.93 L 14.14 21.89 L 10 25 V 20.86 L 9.42 20.59 C 6.07 19.02 4 16.39 4 13.5 C 4 11.25 5.24 9.16 7.4 7.59 C 9.55 6.02 12.61 5 16 5 Z" />
                             </svg>
                             <span
-                                className={`mt-1 text-sm font-medium transition
-                                ${page === "chat"
-                                        ? "text-blue-600 font-bold"
-                                        : "text-gray-600 group-hover:text-blue-600 group-hover:font-bold"}`}
+                                className={`mt-1 text-sm font-medium transition text-gray-600 group-hover:text-blue-600 group-hover:font-bold`}
                             >
                                 Chat
                             </span>

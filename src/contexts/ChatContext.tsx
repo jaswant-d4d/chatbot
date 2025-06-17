@@ -13,7 +13,7 @@ interface ChatContextType {
     messages: MessageType[];
     setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>;
     page: string;
-    setPage: (value: string) => void;
+    setPage: (value: "home" | "chat") => void;
 }
 
 interface MessageType {
@@ -35,7 +35,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
     const [isClearModalOpen, setClearModalOpen] = useState(false);
     const [isRegisterOpen, setRegisterOpen] = useState(false);
     const [botTyping, setBotTyping] = useState(false);
-    const [page, setPage] = useState("home");
+    const [page, setPage] = useState<"home" | "chat">("home");
 
     const [messages, setMessages] = useState<MessageType[]>(conversation || []);
 
