@@ -125,7 +125,6 @@ exports.GeminiChat = async (req, res) => {
                                             > Please email your resume to **hr@yourcompany.com**. Our HR team will reach out if a suitable opportunity exists.
 
                                     ---
-
                               
 
                                     Now respond to this customer query:
