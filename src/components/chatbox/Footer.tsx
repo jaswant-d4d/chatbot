@@ -43,14 +43,15 @@ const Footer = () => {
             setBotTyping(true)
         }, 500);
         try {
-            const response = await fetch(`${apiBaseUrl}/gemini-chat`, {
-                method: 'POST',
-                body: JSON.stringify({ message: messageToSend }),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-            })
+            const response = await fetch(`${apiBaseUrl}/gemini-chat`,
+                {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: messageToSend }),
+                })
             const botResponse = await response.json();
 
             // Simulate typing delay before showing response
