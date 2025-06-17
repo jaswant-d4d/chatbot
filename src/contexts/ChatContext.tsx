@@ -47,6 +47,9 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
                 const res = await fetch(`${apiBaseUrl}/get-chat-history`,
                     {
                         method: "GET",
+                        headers: {
+                            "Accept": 'application/json',
+                        },
                         credentials: 'include', // Required to send cookies
                     }
                 );
