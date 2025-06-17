@@ -41,7 +41,7 @@ exports.GetGeminiChat = async (req, res) => {
             chats: chat
         });
     } catch (err) {
-        console.error('Error fetching chat history:', err);
+        console.error('Error fetching chat history : ', err);
         res.status(500).json({
             success: false,
             error: 'An error occurred while fetching chat history.'
