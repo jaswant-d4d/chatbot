@@ -3,8 +3,7 @@ require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const routes = require('./src/routes');
-const db = require('./src/config/DBConnection');
-
+require('./src/config/DBConnection');
 
 const app = express();
 const port = process.env.PORT || 9999;
@@ -28,6 +27,7 @@ app.use("/api", routes);
 app.get("/", (req, res) => {
   res.json({ message: "Server working fine!" })
 })
+
 
 app.listen(port, () => {
   console.log(`Server listening at port: ${port}`);
