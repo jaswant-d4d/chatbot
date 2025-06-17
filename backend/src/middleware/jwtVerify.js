@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const clearAuthToken = require('./clearAuthToken');
 const User = require('../models/User'); // Adjust path based on your project
 
 const jwtVerify = async (req, res, next) => {
@@ -8,11 +9,11 @@ const jwtVerify = async (req, res, next) => {
             (req.headers.authorization?.startsWith('Bearer ')
                 ? req.headers.authorization.split(' ')[1]
                 : null);
-
+        
         if (!token) {
             return res.status(401).json({
                 success: false,
-                message: 'Authentication token is missing.'
+                message: 'Authentication token is missing!.'
             });
         }
 
@@ -23,6 +24,7 @@ const jwtVerify = async (req, res, next) => {
 
         const userId = decoded?.userId;
         if (!userId) {
+            clearAuthToken(res)
             return res.status(403).json({
                 success: false,
                 message: 'Invalid token payload: user ID missing.'
@@ -32,6 +34,7 @@ const jwtVerify = async (req, res, next) => {
         // Check if user exists
         const user = await User.findById(userId).select('_id name email');
         if (!user) {
+            clearAuthToken(res)
             return res.status(401).json({
                 success: false,
                 message: 'User no longer exists. Please log in again.'
@@ -45,6 +48,7 @@ const jwtVerify = async (req, res, next) => {
         next();
     } catch (err) {
         console.error('JWT verification failed:', err.message);
+        clearAuthToken(res);
         return res.status(401).json({
             success: false,
             message:

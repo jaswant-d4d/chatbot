@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const clearAuthToken = require('../middleware/clearAuthToken');
 
 
 exports.register = async (req, res) => {
@@ -63,6 +64,7 @@ exports.register = async (req, res) => {
 
 exports.verifyToken = async (req, res) => {
     const token = req.cookies?.token;
+
     if (!token) {
         return res.status(401).json({ success: false, message: 'Authentication token is missing.' });
     }
@@ -71,6 +73,7 @@ exports.verifyToken = async (req, res) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         if (!decoded?.userId) {
+            clearAuthToken(res);
             return res.status(403).json({ success: false, message: 'Invalid token structure' });
         }
 
@@ -79,18 +82,14 @@ exports.verifyToken = async (req, res) => {
 
         if (!user) {
             // Clear token if user no longer exists
-            res.clearCookie('token', {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'Strict',
-            });
-
+            clearAuthToken(res);
             return res.status(401).json({ success: false, message: 'User not found or deleted' });
         }
 
         return res.status(200).json({ success: true, message: 'Token is valid', user: decoded });
 
     } catch (err) {
+        clearAuthToken(res);
         return res.status(401).json({ success: false, message: 'Invalid or expired token' });
     }
 }

@@ -39,14 +39,17 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
 
     const [messages, setMessages] = useState<MessageType[]>(conversation || []);
 
-    const apiBaseUrl = import.meta.env.VITE_BACKEND_LIVE_URL;
+    const apiBaseUrl = import.meta.env.VITE_BACKEND_LOCAL_URL;
 
     useEffect(() => {
         const getChat = async () => {
             try {
-                const res = await fetch(`${apiBaseUrl}/get-chat-history`, {
-                    credentials: 'include', // Required to send cookies
-                });
+                const res = await fetch(`${apiBaseUrl}/get-chat-history`,
+                    {
+                        method: "GET",
+                        credentials: 'include', // Required to send cookies
+                    }
+                );
                 const data = await res.json();
 
                 if (res.ok) {
@@ -67,7 +70,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
         <ChatContext.Provider value={{
             botTyping,
             setBotTyping,
-            page, 
+            page,
             setPage,
             messages,
             setMessages,

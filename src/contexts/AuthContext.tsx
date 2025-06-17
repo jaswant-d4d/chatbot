@@ -24,14 +24,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<UserType | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    const apiBaseUrl = import.meta.env.VITE_BACKEND_LIVE_URL;
+    const apiBaseUrl = import.meta.env.VITE_BACKEND_LOCAL_URL;
 
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const res = await fetch(`${apiBaseUrl}/verify-token`, {
-                    credentials: 'include', // Required to send cookies
-                });
+                const res = await fetch(`${apiBaseUrl}/verify-token`,
+                    {
+                        method: "GET",
+                        credentials: "include"
+                    });
                 const data = await res.json();
                 if (res.ok) {
                     // Token is valid

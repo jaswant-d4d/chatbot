@@ -20,7 +20,7 @@ const Conversation = () => {
 
     return (
         <>
-            <div className="p-4 space-y-4 h-[64vh] scrollbar-hide overflow-auto overscroll-none">
+            <div className="p-4 space-y-4  sm:h-[64vh] scrollbar-hide overflow-auto overscroll-none"  style={{ maxHeight: 'calc(100vh - 130px)' }}>
                 {page === "home" && (<HomeView />)}
                 {page === "chat" && (<ChatView />)}
                 <div ref={bottomRef} />

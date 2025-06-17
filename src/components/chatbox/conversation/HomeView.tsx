@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 import { useChat } from "@/contexts/ChatContext";
@@ -74,6 +74,7 @@ const HomeView = () => {
                     </div>
                     <div className="grid gap-3 py-4 ">
                         {topics.map((topic) => (
+                            <React.Fragment key={topic.key}>
                             <button
                                 key={topic.key}
                                 onClick={() => handleTopicSelect(topic.key)}
@@ -81,6 +82,7 @@ const HomeView = () => {
                             >
                                 {topic.label}
                             </button>
+                            </React.Fragment>
                         ))}
 
                     </div>
@@ -97,7 +99,7 @@ const HomeView = () => {
                         <div className="space-y-3 mt-2">
                             {knowledgeBase[selectedTopic].map((item, i) => (
                                 <button
-                                    key={i}
+                                    key={`topic-${i}`}
                                     onClick={() => {
                                         if (!isAuthenticated) {
                                             setRegisterOpen(true)
@@ -116,10 +118,10 @@ const HomeView = () => {
                                 className="cursor-pointer text-center text-blue-500  hover:underline mt-2 flex w-full justify-center"
                             >
                                 <svg className="text-blue-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
-                                        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                                     </g>
                                 </svg>
                                 Back to Topics
