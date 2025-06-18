@@ -49,8 +49,9 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
                         method: "GET",
                         headers: {
                             "Accept": 'application/json',
+                            "Content-Type": 'application/json'
                         },
-                        credentials: 'include', // Required to send cookies
+                        credentials: "include"
                     }
                 );
                 const data = await res.json();

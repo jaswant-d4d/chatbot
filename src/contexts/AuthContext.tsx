@@ -32,10 +32,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                 const res = await fetch(`${apiBaseUrl}/verify-token`,
                     {
                         method: "GET",
-                        headers:{
-                             "Accept": 'application/json',
+                        headers: {
+                            "Accept": 'application/json',
+                            "Content-Type": 'application/json'
                         },
-                        credentials: 'include'
+                        credentials: "include"
                     });
                 const data = await res.json();
                 if (res.ok) {

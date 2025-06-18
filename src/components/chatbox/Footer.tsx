@@ -46,11 +46,12 @@ const Footer = () => {
             const response = await fetch(`${apiBaseUrl}/gemini-chat`,
                 {
                     method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({ message: messageToSend }),
+                    headers: {
+                        "Accept": 'application/json',
+                        "Content-Type": 'application/json'
+                    },
+                    credentials: "include"
                 })
             const botResponse = await response.json();
 
