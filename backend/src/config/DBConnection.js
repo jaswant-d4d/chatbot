@@ -1,17 +1,21 @@
-
 const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        // const mongoUri = `${process.env.MONGO_DB_URI}${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`;
-        const mongoUri = `mongodb+srv://jaswantd4d:EG8MQyMHXXzeTrPe@cluster0.ywouyit.mongodb.net/chatbot?retryWrites=true&w=majority`;
+        mongoose.set("strictQuery", false); // optional: prevent deprecation warning
+
+        const mongoUri = `${process.env.MONGO_DB_URI}${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`;
+
         await mongoose.connect(mongoUri, {
-            serverSelectionTimeoutMS: 10000,
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 10000, // 10 seconds timeout
         });
-        console.log('MongoDB connected');
+
+        console.log('✅ MongoDB connected successfully');
     } catch (err) {
-        console.error('MongoDB connection error:', err);
-        process.exit(1); // optional: exit process on failure
+        console.error('❌ MongoDB connection failed:', err.message);
+        process.exit(1); // Exit process on failure
     }
 };
 
