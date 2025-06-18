@@ -1,6 +1,4 @@
 
-import { useEffect, useRef } from "react";
-
 import { useChat } from "@/contexts/ChatContext";
 import { motion } from "framer-motion";
 
@@ -10,22 +8,15 @@ import HomeView from "./HomeView";
 
 
 const Conversation = () => {
-    const { botTyping, messages, page, setPage } = useChat();
+    const { page, setPage } = useChat();
 
-    const bottomRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages, botTyping]);
 
     return (
         <>
-        {/* style={{ maxHeight: 'calc(100vh - 130px)' }} sm:h-[64vh] */}
-            <div className="p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none">
-                {page === "home" && (<HomeView />)}
-                {page === "chat" && (<ChatView />)}
-                <div ref={bottomRef} />
-            </div>
+
+            {page === "home" && (<HomeView />)}
+            {page === "chat" && (<ChatView />)}
+
 
             {page === "home" && (
                 <div className="px-4 py-1 absolute bottom-0 left-0 right-0 border-t border-slate-200 bg-white z-10">
