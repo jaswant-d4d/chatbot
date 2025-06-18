@@ -3,7 +3,8 @@ require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const routes = require('./src/routes');
-require('./src/config/DBConnection');
+const connectDB = require('./src/config/DBConnection');
+connectDB();
 
 const app = express();
 const port = process.env.PORT || 9999;
@@ -18,7 +19,7 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: ["http://localhost:5173", WP_FRONTEND_LOCAL_URL, FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL], // or your production domain'
-  credentials: true 
+  credentials: true
 }));
 
 
