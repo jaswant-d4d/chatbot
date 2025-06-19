@@ -27,7 +27,7 @@ const ChatView = () => {
     return (
 
         <>
-            <div className="p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none max-h-[64vh]">
+            <div className="p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none">
                 {/* Converations */}
                 {messages?.length > 0 && messages?.map((msg, index) => {
                     const isUser = msg.sender === 'user';
