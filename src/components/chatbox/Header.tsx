@@ -8,14 +8,15 @@ const Header = () => {
     const { isAuthenticated } = useAuth();
 
     const clearConversationHandler = () => {
-        if (messages?.length > 0) {
-            setClearModalOpen(true)
-        }
         if (!isAuthenticated) {
             setRegisterOpen(false)
         }
-        setChatVisible(false);
-        setPage('home')
+        if (messages?.length > 0) {
+            setClearModalOpen(true)
+        } else {
+            setChatVisible(false);
+            setPage('home')
+        }
     }
 
     const minimizeHandler = () => {
@@ -34,12 +35,12 @@ const Header = () => {
                     <div className='flex items-center space-x-1'>
                         {page === "chat" && (
                             <button
-                                className="bg-trasnparent p-1 cursor-pointer flex items-center justify-center"
+                                className="bg-trasnparent cursor-pointer flex items-center justify-center"
                                 aria-label="Go back"
                                 title="Go back"
                                 onClick={() => setPage("home")}
                             >
-                                <svg className="size-4 sm:size-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                                <svg className="size-5 sm:size-6 text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                                     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                                     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
@@ -51,25 +52,25 @@ const Header = () => {
                         <img src={ChatIcon} alt='Bot Avatar' className='w-10 h-full object-contain' />
                         <h3 className="text-lg font-semibold ">Chatbot</h3>
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex gap-3">
                         <button
                             type="button"
                             onClick={minimizeHandler}
-                            className=" flex items-center justify-center p-1 rounded cursor-pointer hover:scale-110 transition-all duration-300  focus:outline-none focus:ring"
+                            className=" flex items-center justify-center rounded cursor-pointer hover:scale-110 transition-all duration-300  focus:outline-none focus:ring"
                             aria-label="Minimize Chat"
                             title="Minimize"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" className="size-4 sm:size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 12l14 0" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" className="size-4 sm:size-5"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 12l14 0" /></svg>
                         </button>
 
                         <button
                             type="button"
                             onClick={clearConversationHandler}
-                            className=" flex items-center justify-center p-1 rounded cursor-pointer hover:scale-110 transition-all duration-300 focus:outline-none focus:ring"
+                            className=" flex items-center justify-center rounded cursor-pointer hover:scale-110 transition-all duration-300 focus:outline-none focus:ring"
                             aria-label="End Chat"
                             title="End Chat"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" className="size-4 sm:size-6"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" className="size-4 sm:size-5"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                         </button>
                     </div>
 

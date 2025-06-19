@@ -23,10 +23,10 @@ const Conversation = () => {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="flex justify-evenly items-center gap-2"
+                        className="flex justify-center items-center gap-5 space-x-20 py-2"
                     >
                         {/* Home Button */}
-                        <button className="px-6 py-2 flex flex-col items-center group" onClick={() => setPage("home")}>
+                        <button className="cursor-pointer flex flex-col items-center group" onClick={() => setPage("home")}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -51,7 +51,7 @@ const Conversation = () => {
                         </button>
 
                         {/* Chat Button */}
-                        <button className="px-6 py-2 flex flex-col items-center group" onClick={() => setPage("chat")}>
+                        <button className="cursor-pointer flex flex-col items-center group" onClick={() => setPage("chat")}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"

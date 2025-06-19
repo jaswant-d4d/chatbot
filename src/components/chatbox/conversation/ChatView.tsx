@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion } from "framer-motion";
 import { useChat } from '@/contexts/ChatContext';
 import { useFormatDate, useFormatTime } from '@/hooks/useFormatDateTime';
@@ -10,26 +10,60 @@ import { useAuth } from '@/contexts/AuthContext';
 const ChatView = () => {
     const { user } = useAuth();
     const { botTyping, messages } = useChat();
-
+    const [isChatLoading, setChatLoading] = useState(true);
     const lastDateRef = useRef<string | null>(null);
     const bottomRef = useRef<HTMLDivElement | null>(null);
 
 
     useEffect(() => {
+        if (isChatLoading) return;
+
         const timeout = setTimeout(() => {
             bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-        }, 50); // small delay to allow DOM update
+        }, 100); // allow DOM update before scroll
 
         return () => clearTimeout(timeout);
-    }, [messages, botTyping]);
+    }, [messages, botTyping, isChatLoading]);
 
+    useEffect(() => {
+        let timer: ReturnType<typeof setTimeout>;
+
+        if (isChatLoading) {
+            timer = setTimeout(() => {
+                setChatLoading(false);
+            }, 1000); // 1 second delay
+        }
+
+        return () => clearTimeout(timer); // Clear on cleanup
+    }, [isChatLoading]);
 
     return (
 
         <>
-            <div className="p-2 sm:p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none">
+            <div className="p-2 sm:p-4 space-y-4 scrollbar-hide overflow-auto overscroll-none">
                 {/* Converations */}
-                {messages?.length > 0 && messages?.map((msg, index) => {
+                {isChatLoading ? (
+                    <div className="space-y-4 p-4">
+                        {Array.from({ length: 4 })?.map(() => (
+                            <>
+                                <div className="flex items-start gap-2">
+                                    <div className="w-8 h-8 rounded-full bg-gray-300 animate-pulse"></div>
+                                    <div className="flex flex-col space-y-2">
+                                        <div className="w-48 h-4 rounded-lg bg-gray-300 animate-pulse"></div>
+                                        <div className="w-32 h-4 rounded-lg bg-gray-300 animate-pulse"></div>
+                                    </div>
+                                </div>
+                                <div className="flex items-start justify-end gap-2">
+                                    <div className="flex flex-col items-end space-y-2">
+                                        <div className="w-40 h-4 rounded-lg bg-gray-300 animate-pulse"></div>
+                                        <div className="w-24 h-4 rounded-lg bg-gray-300 animate-pulse"></div>
+                                    </div>
+                                    <div className="w-8 h-8 rounded-full bg-gray-300 animate-pulse"></div>
+                                </div>
+                            </>
+                        ))}
+                    </div>
+                ) : messages?.length > 0 && messages?.map((msg, index) => {
                     const isUser = msg.sender === 'user';
                     const formattedTime = msg.timestamp ? useFormatTime(msg.timestamp) : '';
                     const currentDate = msg.timestamp ? useFormatDate(msg.timestamp) : '';
@@ -43,12 +77,11 @@ const ChatView = () => {
                     }
                     return (
                         <React.Fragment key={index}>
-
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: index * 0.05 }}
+                                transition={{ duration: 0.3, delay: index * 0.01 }}
                             >
                                 {showDateDivider && currentDate && (
                                     <div className="flex justify-center my-5">
@@ -104,7 +137,7 @@ const ChatView = () => {
                 })}
 
                 {/* Bot Typing */}
-                {botTyping && (
+                {botTyping && !isChatLoading && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -117,7 +150,7 @@ const ChatView = () => {
                                 alt="Bot Avatar"
                                 className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover"
                             />
-                            <span>Thinking...</span>
+                            <span className='text-sm'>Thinking...</span>
                         </div>
                     </motion.div>
                 )}

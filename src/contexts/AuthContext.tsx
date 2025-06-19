@@ -40,8 +40,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     });
                 const data = await res.json();
                 if (res.ok) {
-                    // Token is valid
-                    console.log('User:', data.user);
                     setIsAuthenticated(true);
                     setUser(data.user);
                 } else {

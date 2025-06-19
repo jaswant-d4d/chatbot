@@ -17,23 +17,23 @@ const ClearConversationBox = () => {
             role="dialog"
         >
             <section className="flex flex-col items-center py-4">
-                <h3 className="text-center text-xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-center text-md sm:text-lg font-semibold text-slate-900 mb-3">
                     End Chat
                 </h3>
-                <p className="mb-4">
+                <p className="mb-4 text-sm">
                     Are you sure you want to end chat?
                 </p>
                 <div className="p-4 flex flex-col w-full">
                     <button
                         type="button"
-                        className="w-full rounded-md bg-red-400 py-2 mb-3 cursor-pointer font-semibold hover:bg-red-500"
+                        className="w-full text-sm sm:text-xs rounded-md bg-red-400 py-2 mb-3 cursor-pointer font-semibold hover:bg-red-500"
                         onClick={endChatHandler}
                     >
                         End Chat
                     </button>
                     <button
                         type="button"
-                        className="w-full rounded-md bg-transparent cursor-pointer font-semibold"
+                        className="w-full text-sm sm:text-xs rounded-md bg-transparent cursor-pointer font-semibold"
                         onClick={() => setClearModalOpen(false)}
                     >
                         Cancel

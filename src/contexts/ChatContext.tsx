@@ -72,12 +72,12 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
 
     return (
         <ChatContext.Provider value={{
-            botTyping,
-            setBotTyping,
             page,
             setPage,
             messages,
             setMessages,
+            botTyping,
+            setBotTyping,
             isChatVisible,
             setChatVisible,
             isClearModalOpen,
