@@ -32,8 +32,8 @@ const Chatbox = () => {
   if (!isChatVisible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 sm:bottom-8 sm:right-8 sm:inset-x-auto z-50 transition-all ease-in-out duration-500">
-      <div className=' w-full sm:w-sm rounded-2xl h-screen sm:h-[100vh] bg-white mx-auto sm:ml-auto'>
+    <div className="fixed bottom-8 right-8 h-[calc(100vh-62px)] sm:h-[80vh] z-50 transition-all ease-in-out duration-500 w-[calc(100vw-60px)]">
+      <div className=' w-full sm:w-sm rounded-2xl h-full bg-white ml-auto'>
         <div className='flex flex-col h-full w-full shadow-lg rounded-2xl relative overflow-hidden pb-18 pt-14 sm:pt-18'>
 
           {!showContent ? (

@@ -27,7 +27,7 @@ const ChatView = () => {
     return (
 
         <>
-            <div className="p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none">
+            <div className="p-2 sm:p-4 space-y-4  scrollbar-hide overflow-auto overscroll-none">
                 {/* Converations */}
                 {messages?.length > 0 && messages?.map((msg, index) => {
                     const isUser = msg.sender === 'user';
@@ -69,13 +69,16 @@ const ChatView = () => {
                                             )}
 
                                             <div
-                                                className={`px-4 py-2 text-sm rounded-2xl shadow max-w-full break-words whitespace-pre-wrap ${isUser
+
+                                            >
+                                                {/* ? 'bg-[#e1ddde] text-[#1e2939] rounded-br-none' */}
+                                                <div className={`p-2 rounded-md shadow max-w-full break-words whitespace-pre-wrap text-xs font-medium leading-4 ${isUser
                                                     ? 'bg-blue-500 text-white rounded-br-none'
                                                     : 'bg-gray-100 text-gray-800 rounded-bl-none'
-                                                    }`}
-                                            >
-                                                <Markdown>{msg.message}</Markdown>
-                                                <span className={`text-[10px] mt-1 ${isUser ? 'text-gray-300 flex justify-start pr-2' : 'text-gray-500 flex justify-end pl-2'}`}>
+                                                    }`}>
+                                                    <Markdown>{msg.message}</Markdown>
+                                                </div>
+                                                <span className={`text-[9px] mt-1 font-medium text-gray-500 tracking-normal flex ${isUser ? 'justify-start pr-2' : 'justify-end pl-2'}`}>
                                                     {formattedTime}
                                                 </span>
                                             </div>
