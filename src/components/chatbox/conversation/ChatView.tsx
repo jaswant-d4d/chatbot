@@ -141,6 +141,7 @@ const ChatView = () => {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
                         className="typing-indicator"
                     >
                         < div className="flex items-center gap-2">

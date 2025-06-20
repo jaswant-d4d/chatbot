@@ -124,6 +124,17 @@ exports.GeminiChat = async (req, res) => {
                                             > Thanks for your interest in joining our team! 🙌  
                                             > Please email your resume to **hr@yourcompany.com**. Our HR team will reach out if a suitable opportunity exists.
 
+                                    2.  New Client / Service Inquiry (Leads)
+                                        Trigger Keywords: build website, build app, develop site, need website, create app, web development, mobile app, start project, website design, want website, ecommerce store, online shop
+                                        Response:
+                                            > We'd love to help you bring your project to life! 🚀
+                                            > Please share a few details about what you need, or directly contact us at sales@yourcompany.com.
+                                            > One of our experts will get back to you shortly with a free consultation.
+
+                                    3. Greetings / Casual Hello
+                                        Trigger Keywords: hello, hi, hey, how are you, ki haal, salaam, namaste
+                                        Response: "Hi there! 👋 How can I help you today?"
+
                                     ---
                               
 
@@ -131,12 +142,12 @@ exports.GeminiChat = async (req, res) => {
 
                                 Q: ${message}
                                 `
-                                    //   2. **Project / Service Inquiries**  
-                                    //     Trigger Keywords: website, web app, mobile app, development, ecommerce, redesign, cost, quote, timeline, hire  
-                                    //     Response:  
-                                    //         > We'd love to help! 🚀  
-                                    //         > Please share project details or reach our sales team at **sales@yourcompany.com**. We'll respond shortly.
-                                    // ---
+                                //   2. **Project / Service Inquiries**  
+                                //     Trigger Keywords: website, web app, mobile app, development, ecommerce, redesign, cost, quote, timeline, hire  
+                                //     Response:  
+                                //         > We'd love to help! 🚀  
+                                //         > Please share project details or reach our sales team at **sales@yourcompany.com**. We'll respond shortly.
+                                // ---
                             }
                         ]
                     }
