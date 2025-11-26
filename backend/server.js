@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: ["http://localhost:5173", WP_FRONTEND_LOCAL_URL, FRONTEND_LIVE_URL, WIDGET_LIVE_URL, FRONTEND_LOCAL_URL], // or your production domain'
+  origin: ["http://localhost:5173", WP_FRONTEND_LOCAL_URL, FRONTEND_LIVE_URL, WIDGET_LIVE_URL, FRONTEND_LOCAL_URL],
   credentials: true
 }));
 
