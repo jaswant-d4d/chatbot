@@ -9,7 +9,7 @@ connectDB();
 const app = express();
 const port = process.env.PORT || 9999;
 
-const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL, WP_FRONTEND_LOCAL_URL } = process.env;
+const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL, WIDGET_LIVE_URL, WP_FRONTEND_LOCAL_URL } = process.env;
 
 // ✅ JSON Body Parser
 app.use(express.json());
