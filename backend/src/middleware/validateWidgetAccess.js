@@ -1,4 +1,4 @@
-const Company = require("../../models/Company");
+const Company = require("../models/Company");
 
 async function validateWidgetAccess(req, res, next) {
   try {

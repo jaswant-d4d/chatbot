@@ -24,4 +24,4 @@ CompanySchema.statics.generateApiKey = function (prefix = "cmp_") {
   return prefix + crypto.randomBytes(20).toString("hex");
 };
 
-module.exports = mongoose.model("Company", CompanySchema);
+module.exports = mongoose.model("company", CompanySchema);
