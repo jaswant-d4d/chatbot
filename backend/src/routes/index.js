@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const companiesRouter = require("./companies")
 
 const jwtVerify = require('../middleware/jwtVerify');
 
@@ -19,6 +20,7 @@ router.get('/chatgpt-chat', ChatGPT)
 router.get("/test", (req, res) => {
   res.json({ message: "Server is working fine!" })
 })
+router.get('/companies', companiesRouter)
 
 
 module.exports = router
