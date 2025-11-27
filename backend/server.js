@@ -1,9 +1,10 @@
 const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const routes = require('./src/routes');
-const path = require('path');
+const companiesRouter = require("./src/routes/companies")
 const connectDB = require('./src/config/DBConnection');
 const validateWidgetAccess = require('./src/middleware/validateWidgetAccess');
 connectDB();
@@ -26,6 +27,7 @@ app.use(cors({
 
 
 app.use("/api", routes);
+app.use('/api/companies', companiesRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Server working fine!" })
