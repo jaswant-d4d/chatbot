@@ -3,6 +3,7 @@ require('dotenv').config();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const routes = require('./src/routes');
+const path = require('path');
 const connectDB = require('./src/config/DBConnection');
 const validateWidgetAccess = require('./src/middleware/validateWidgetAccess');
 connectDB();
