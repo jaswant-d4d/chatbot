@@ -11,7 +11,7 @@ connectDB();
 const app = express();
 const port = process.env.PORT || 9999;
 
-const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL, WIDGET_LIVE_URL, WP_FRONTEND_LOCAL_URL } = process.env;
+const { FRONTEND_LIVE_URL, FRONTEND_LOCAL_URL, NETWORK_URL, WIDGET_LIVE_URL, WP_FRONTEND_LOCAL_URL } = process.env;
 
 // ✅ JSON Body Parser
 app.use(express.json());
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: ["http://localhost:5173", WP_FRONTEND_LOCAL_URL, FRONTEND_LIVE_URL, WIDGET_LIVE_URL, FRONTEND_LOCAL_URL],
+  origin: ["http://localhost:5173", WP_FRONTEND_LOCAL_URL, FRONTEND_LIVE_URL, NETWORK_URL, WIDGET_LIVE_URL, FRONTEND_LOCAL_URL],
   credentials: true
 }));
 
