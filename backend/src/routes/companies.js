@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Company = require("../models/Company");
 
+
 // List companies
 router.get("/", async (req, res) => {
   try {
