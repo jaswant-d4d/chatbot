@@ -1,37 +1,46 @@
 const Company = require("../models/Company");
 
+function normalizeDomain(d) {
+  return d
+    ?.toString()
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .split(":")[0]
+    .toLowerCase();
+}
+
 async function validateWidgetAccess(req, res, next) {
   try {
     const { company: companyId, token, domain } = req.query;
 
     if (!companyId || !token || !domain) {
-      return res.status(401).send("Missing widget credentials");
+      return res.status(401).json({ success: false, message: "Missing widget credentials" });
     }
 
     const company = await Company.findOne({ _id: companyId, apiKey: token });
-    if (!company) return res.status(403).send("Invalid company/token");
+    if (!company) {
+      return res.status(403).json({ success: false, message: "Invalid company/token" });
+    }
 
-    if (!company.isActive) return res.status(403).send("Company inactive");
+    if (!company.status || company.status !== "active") {
+      return res.status(403).json({ success: false, message: "Company inactive" });
+    }
 
-    // normalize domain (remove protocol, port, www)
-    const normalize = (d) =>
-      d
-        .toString()
-        .replace(/^https?:\/\//, "")
-        .replace(/^www\./, "")
-        .split(":")[0]
-        .toLowerCase();
+    const host = normalizeDomain(domain);
 
-    const host = normalize(domain);
-    const allowed = company.domains.some((x) => normalize(x.host) === host);
-    if (!allowed) return res.status(403).send("Domain not allowed");
+    const allowed = company.allowedDomains.some(
+      (d) => normalizeDomain(d) === host
+    );
 
-    // ok — attach company to request
-    req.company = company;
+    if (!allowed) {
+      return res.status(403).json({ success: false, message: "Domain not allowed" });
+    }
+
+    req.company = company; // Attach company data
     next();
   } catch (err) {
     console.error(err);
-    res.status(500).send("Server error");
+    res.status(500).json({ success: false, message: "Server error" });
   }
 }
 

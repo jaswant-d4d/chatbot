@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Company = require("../models/Company");
 
-
 // List companies
 router.get("/", async (req, res) => {
   try {
@@ -91,5 +90,6 @@ router.post("/:id/regenerate-key", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 module.exports = router;

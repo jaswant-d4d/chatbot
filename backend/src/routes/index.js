@@ -5,6 +5,7 @@ const jwtVerify = require('../middleware/jwtVerify');
 
 const { GeminiChat, ChatGPT, GetGeminiChat } = require('../controllers/chat');
 const { register, verifyToken } = require('../controllers/user');
+const validateWidgetAccess = require('../middleware/validateWidgetAccess');
 
 router.get('/verify-token', verifyToken)
 
@@ -20,6 +21,9 @@ router.get("/test", (req, res) => {
   res.json({ message: "Server is working fine!" })
 })
 
+router.get("/validate-widget", validateWidgetAccess, (req, res) => {
+  res.json({ success: true });
+});
 
 
 module.exports = router

@@ -27,19 +27,25 @@ app.use(cors({
 
 
 app.use("/api", routes);
+
 app.use('/api/companies', companiesRouter);
+
 
 app.get("/", (req, res) => {
   res.json({ message: "Server working fine!" })
 })
-app.get("/widget", validateWidgetAccess, (req, res) => {
-  // If you are using React and built files are in 'build' or 'dist',
-  // you can serve an HTML that bootstraps your chat iframe UI.
-  // For dev/simple example, serve an HTML file from public/widget.html
-  res.sendFile(path.join(__dirname, "public", "widget.html"));
+
+const widgetPath = path.join(__dirname, "public/widget");
+
+// Serve JS, CSS, assets
+app.use("/widget", express.static(widgetPath));
+app.use("/assets", express.static(path.join(__dirname, "public/widget/assets")));
+app.get("/vite.svg", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/widget/vite.svg"));
 });
-// static files (widget.js) and UI assets in public
-app.use(express.static(path.join(__dirname, "public")));
+app.get("/widget", validateWidgetAccess, (req, res) => {
+  res.sendFile(path.join(__dirname, "public/widget/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server listening at port: ${port}`);
