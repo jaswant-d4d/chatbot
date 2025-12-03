@@ -1,6 +1,6 @@
 (function () {
 
-  const BACKEND_URL = "https://chatbot-widget-seven-zeta.vercel.app";
+  const BACKEND_URL = "https://chatbot-backend-ashen-theta.vercel.app";
   const script = document.currentScript;
   const url = new URL(document.currentScript.src);
   const company = script.dataset.company || url.searchParams.get("company");
