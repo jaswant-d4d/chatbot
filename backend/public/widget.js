@@ -7,6 +7,11 @@
   const token = script.dataset.token || url.searchParams.get("token");
   const domain = window.location.origin;
 
+  if (!company || !token) {
+    console.error("❌ Missing data-company or data-token attributes in widget.js script tag");
+    return;
+  }
+
   // Build iframe URL with validation data
   const iframeUrl = `${BACKEND_URL}/widget?company=${encodeURIComponent(company)}&token=${encodeURIComponent(token)}&domain=${encodeURIComponent(domain)}`;
 
