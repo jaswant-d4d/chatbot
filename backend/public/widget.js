@@ -30,7 +30,7 @@
   iframe.style.zIndex = "999999999";
 
 
-  document.addEventListener("DOMContentLoaded", () => {
+  // document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(iframe);
-  });
+  // });
 })();
