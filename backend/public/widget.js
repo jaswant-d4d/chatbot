@@ -22,15 +22,13 @@
   iframe.style.bottom = "24px";
   iframe.style.right = "24px";
   iframe.style.height = "90%";
-  iframe.style.width = "375px";
   iframe.style.maxHeight = "725px";
-  iframe.style.minWidth = "320px";
+  iframe.style.width = "320px";
+  iframe.style.maxWidth = "375px";
   iframe.style.border = "none";
   iframe.style.borderRadius = "12px";
-  iframe.style.zIndex = "999999999";
+  iframe.style.zIndex = 99999999999999;
+  iframe.style.pointerEvents = "auto";
 
-
-  // document.addEventListener("DOMContentLoaded", () => {
-    document.body.appendChild(iframe);
-  // });
+  document.body.appendChild(iframe);
 })();
