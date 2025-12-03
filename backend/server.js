@@ -35,14 +35,19 @@ app.get("/", (req, res) => {
   res.json({ message: "Server working fine!" })
 })
 
-const widgetPath = path.join(__dirname, "public/widget");
-
-// Serve JS, CSS, assets
-app.use("/widget", express.static(widgetPath));
-app.use("/assets", express.static(path.join(__dirname, "public/widget/assets")));
 app.get("/vite.svg", (req, res) => {
   res.sendFile(path.join(__dirname, "public/widget/vite.svg"));
 });
+
+app.get("/widget.js", (req, res) => {
+  res.set("Content-Type", "application/javascript");
+  res.sendFile(path.join(__dirname, "public", "widget.js"));
+});
+
+// Serve widget build (iframe UI)
+app.use("/widget", express.static(path.join(__dirname, "public/widget")));
+app.use("/assets", express.static(path.join(__dirname, "public/widget/assets")));
+
 app.get("/widget", validateWidgetAccess, (req, res) => {
   res.sendFile(path.join(__dirname, "public/widget/index.html"));
 });
