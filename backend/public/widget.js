@@ -73,9 +73,9 @@
   iframe.style.right = "24px";
 
   // 🔥 PERFECT RESPONSIVE SIZING  
-  iframe.style.width = "375px";     // desktop perfect width
+  iframe.style.width = "320px";     // desktop perfect width
   iframe.style.maxWidth = "90vw";   // mobile responsive
-  iframe.style.minWidth = "320px";
+  iframe.style.minWidth = "300px";
 
   iframe.style.height = "80vh";     // proportional height
   iframe.style.maxHeight = "680px"; // ideal height
