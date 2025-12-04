@@ -12,12 +12,13 @@ function normalizeDomain(d) {
 async function validateWidgetAccess(req, res, next) {
   try {
     const { company: companyId, token, domain } = req.query;
-
+    console.log(req.body, "{body}")
     if (!companyId || !token || !domain) {
       return res.status(401).json({ success: false, message: "Missing widget credentials" });
     }
 
     const company = await Company.findOne({ _id: companyId, apiKey: token });
+    console.log(company, "/company1")
     if (!company) {
       return res.status(403).json({ success: false, message: "Invalid company/token" });
     }
@@ -39,7 +40,7 @@ async function validateWidgetAccess(req, res, next) {
     req.company = company; // Attach company data
     next();
   } catch (err) {
-    console.error(err);
+    console.error(err, "{err}");
     res.status(500).json({ success: false, message: "Server error" });
   }
 }
