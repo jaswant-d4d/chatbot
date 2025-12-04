@@ -50,7 +50,9 @@ app.use("/assets", express.static(path.join(__dirname, "public/widget/assets")))
 app.use("/images", express.static(path.join(__dirname, "public/widget/images")));
 
 app.get("/widget", validateWidgetAccess, (req, res) => {
-  res.sendFile(path.join(__dirname, "public/widget/index.html"));
+
+  res.send({ body: req.body })
+  // res.sendFile(path.join(__dirname, "public/widget/index.html"));
 });
 
 app.listen(port, () => {
