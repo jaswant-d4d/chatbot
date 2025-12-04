@@ -35,7 +35,7 @@
   }
 
   // base styles
-  chatBtn.style.zIndex = 999999999;
+  chatBtn.style.zIndex = "999999999";
   chatBtn.style.transition = "all 0.3s ease";
   chatBtn.style.boxShadow = "0px 5px 20px rgba(0,0,0,0.22)";
   chatBtn.style.borderRadius = "30px";   // rounded-4xl
@@ -85,7 +85,7 @@
   iframe.style.transform = "translateY(20px) scale(0.92)";
   iframe.style.opacity = "0";
   iframe.style.pointerEvents = "none";
-  iframe.style.zIndex = 999999999;
+  iframe.style.zIndex = "999999999";
   iframe.style.transition = "all 0.35s ease";
 
   let isOpen = false;
