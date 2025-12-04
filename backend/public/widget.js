@@ -17,26 +17,51 @@
   // Build iframe URL with validation data
   const iframeUrl = `${BACKEND_URL}/widget?company=${encodeURIComponent(company)}&token=${encodeURIComponent(token)}&domain=${encodeURIComponent(domain)}`;
 
+
   /* ---------------------------
-        CHAT BUTTON (FLOAT)
+          CHAT BUTTON (FLOAT)
   ---------------------------- */
-  const chatBtn = document.createElement("div");
+  const chatBtn = document.createElement("button");
+
+  // same Tailwind-like fixed placement
   chatBtn.style.position = "fixed";
-  chatBtn.style.bottom = "24px";
-  chatBtn.style.right = "24px";
-  chatBtn.style.width = "60px";
-  chatBtn.style.height = "60px";
-  chatBtn.style.borderRadius = "50%";
-  chatBtn.style.background = "#2563eb";
-  chatBtn.style.display = "flex";
-  chatBtn.style.alignItems = "center";
-  chatBtn.style.justifyContent = "center";
-  chatBtn.style.cursor = "pointer";
+  chatBtn.style.bottom = "16px"; // bottom-4
+  chatBtn.style.right = "16px";  // right-4
+
+  // responsive breakpoints (sm:bottom-10 sm:right-10)
+  if (window.innerWidth >= 640) {
+    chatBtn.style.bottom = "40px";
+    chatBtn.style.right = "40px";
+  }
+
+  // base styles
   chatBtn.style.zIndex = "999999999";
-  chatBtn.style.boxShadow = "0px 8px 25px rgba(0,0,0,0.18)";
-  chatBtn.style.color = "#fff";
-  chatBtn.style.fontSize = "26px";
-  chatBtn.innerHTML = "💬";
+  chatBtn.style.transition = "all 0.3s ease";
+  chatBtn.style.boxShadow = "0px 5px 20px rgba(0,0,0,0.22)";
+  chatBtn.style.borderRadius = "30px";   // rounded-4xl
+  chatBtn.style.padding = "0";           // no default padding
+  chatBtn.style.border = "none";
+  chatBtn.style.background = "transparent";
+  chatBtn.style.cursor = "pointer";
+
+  // scale hover effect
+  chatBtn.onmouseenter = () => {
+    chatBtn.style.transform = "scale(1.15)";
+  };
+  chatBtn.onmouseleave = () => {
+    chatBtn.style.transform = "scale(1)";
+  };
+
+  // image icon
+  const iconImg = document.createElement("img");
+  iconImg.src = "https://chatbot-backend-ashen-theta.vercel.app/images/chat-icon.png"; // 🔥 Put your ChatIcon here
+  iconImg.style.width = "40px";   // h-10
+  iconImg.style.height = "40px";  // w-10
+  iconImg.style.borderRadius = "999px"; // rounded-full
+  iconImg.style.objectFit = "cover";
+
+  chatBtn.appendChild(iconImg);
+
 
   /* ---------------------------
            IFRAME CHATBOX
