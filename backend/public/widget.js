@@ -97,24 +97,28 @@
     if (!isOpen) {
       // OPEN
       iframe.style.opacity = "1";
-      iframe.style.transform = "translateY(0px) scale(1)";
+      iframe.style.transform = "none";
       iframe.style.pointerEvents = "auto";
       iframe.style.boxShadow = "0px 20px 45px rgba(0,0,0,0.25)";
-
       chatBtn.style.display = "none";
     } else {
       // CLOSE
       iframe.style.opacity = "0";
-      iframe.style.transform = "translateY(20px) scale(0.92)";
+      iframe.style.transform = "none";
       iframe.style.pointerEvents = "none";
       iframe.style.boxShadow = "none";
-
       chatBtn.style.display = "flex";
     }
     isOpen = !isOpen;
   }
 
   chatBtn.addEventListener("click", toggleChatbot);
+
+  window.addEventListener("message", (event) => {
+    if (event.data?.type === "CLOSE_CHATBOT") {
+      closeChat();
+    }
+  });
 
   /* ---------------------------
          ADD TO PAGE
